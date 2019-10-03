@@ -93,7 +93,7 @@ def load_data():
     x_test=get_frequencies(test[0])
 
     #373173 chiavi del training
-    y_train=(train[1]
+    y_train=(train[1])
     #93294 chiavi del testing
     y_test=(test[1])
 
