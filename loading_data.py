@@ -1,6 +1,7 @@
 import random
 import cifrario_cesare as cc
 import frequency as freq
+import numpy as np
 
 #dizionario lettera: frequenza lingua INGLESE
 letters_frequency=dict({
@@ -33,8 +34,8 @@ def load_words():
                 word=word.replace(char,'')
     random.shuffle(words)
     f.close()
-
     return words
+
 
 
 #genera le frasi dalle parole singole
@@ -56,15 +57,22 @@ def phrase_encryption(phrases):
 #cifra tutte le parole in words
 def words_encryption(words):
     cyphered_words=[]
+    all_keys=[]
     keys=[]
     for word in words:
+        keys=[]
         #ha senso aumentare gli interi su cui si generano le chiavi?
         key=random.randint(1, 26)
-        #le lettere dovrebbero essere tutte lower
-        cyphered_word = cc.encrypt(''.join(word)
-        keys.append(key)
+        #riempimento dell'array keys con zeri
+        for i in range(26):
+            keys.append(0)
+        keys[key-1]=1
+        all_keys.append(keys)
+
+        word=word.lower()
+        cyphered_word = cc.encrypt(word, key)
         cyphered_words.append(cyphered_word)
-    return (cyphered_words,keys)
+    return (cyphered_words,all_keys)
 
 #carico le parole in vettori e genero i la tupla di vettori in uscita pronti per l'allenamento
 #X sta per PLAINTEXT, Y per testo CIPHERTEXT
@@ -72,17 +80,22 @@ def load_data():
     #466467 parole
     words=load_words()
     #le parole per il test sono l'80% del dataset globale
-    training_words_length=int(len(words)*0.8)
+    train_words_length=int(len(words)*0.8)
 
-    training_w_e_keys=words_encryption(words[:training_words_length])
-    test_w_e_keys=words_encryption(words[training_words_length:len(words)]))
+    train=words_encryption(words[:train_words_length])
+
+
+    test=words_encryption(words[train_words_length:len(words)])
 
     #373173 parole cifrate
-    x_train=get_frequencies(training_w_e_keys(0))
-
+    x_train=get_frequencies(train[0])
     #93294 parole cifrate
-    x_test=get_frequencies(words_encryption(test_w_e_keys(1))
+    x_test=get_frequencies(test[0])
 
+    #373173 chiavi del training
+    y_train=(train[1]
+    #93294 chiavi del testing
+    y_test=(test[1])
 
     return ((x_train, y_train), (x_test, y_test))
 
@@ -95,5 +108,4 @@ def get_frequencies(words):
         frequencies.append(frequency)
     return frequencies
 
-
-load_data
+load_data()

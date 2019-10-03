@@ -15,7 +15,7 @@ def encrypt(text, s):
             result += chr((ord(char) + s - 97) % 26 + 97)
     return result
 
-#cifra tutte le parole in words
+#restituisce le chiavi di cifratura per ogni parola
 def get_keys(words):
     keys=[]
     for word in words:
