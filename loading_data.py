@@ -92,7 +92,6 @@ def load_data():
 
     #373173 parole cifrate
     x_train=np.asarray(get_frequencies(train[0]))
-    print(x_train)
     #93294 parole cifrate
     x_test=np.asarray(get_frequencies(test[0]))
 
