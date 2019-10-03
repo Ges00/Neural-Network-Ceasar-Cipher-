@@ -23,7 +23,7 @@ model = tf.keras.models.Sequential()
 
 #layer di input, posso usare anche la relu
 #model.add(tf.keras.models.Flatten())
-model.add(tf.keras.layers.Dense(26, input_dim=8, activation='relu'))
+model.add(tf.keras.layers.Dense(26, input_dim=26, activation='relu'))
 #hidden layer
 model.add(tf.keras.layers.Dense(30, activation='relu'))
 #output layer
