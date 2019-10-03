@@ -23,9 +23,10 @@ alphabet=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 #caricamento delle parole dal fil words.txt
 def load_words():
     words = []
-    #path ubuntu /home/diego/Neural-Network-Ceasar-Cipher-/file_txt/words.txt
+    #path windows
     f = open(r'D:\file_txt\words.txt', 'r')
-
+    #path ubuntu
+    #f = open('/home/diego/Neural-Network-Ceasar-Cipher-/file_txt/words.txt', 'r')
     for line in f:
         # tolgo il \n per ogni riga
         words.append(line.rstrip() + ' ')
