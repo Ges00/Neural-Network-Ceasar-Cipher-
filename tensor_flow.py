@@ -23,11 +23,13 @@ model = tf.keras.models.Sequential()
 
 #layer di input, posso usare anche la relu
 #model.add(tf.keras.models.Flatten())
-model.add(tf.keras.layers.Dense(26, input_dim=8, activation='relu'))
+model.add(tf.keras.layers.Dense(26, input_dim=26, activation='relu'))
 #hidden layer
-model.add(tf.keras.layers.Dense(30, activation='relu'))
+model.add(tf.keras.layers.Dense(26, activation='relu'))
+#la sigmoidea ritorna una probabilità
+#la relu è preferibile in quanto riesco ad avvicinarmi di più all'output desiderato
 #output layer
-model.add(tf.keras.layers.Dense(26, activation='sigmoid'))
+model.add(tf.keras.layers.Dense(26, activation='relu'))
 
 #cercare la loss giusta
 model.compile(optimizer='adam',
@@ -41,6 +43,6 @@ _, accuracy = model.evaluate(x_train, y_train)
 print('Accuracy: %.2f \n' % (accuracy*100))
 
 #making prediction for the test set
-predictions = model.predict_classes(x_test)
+predictions = model.predict(x_test)
 for i in range(5):
 	print('%s => %d (expected %d)' % (x_test[i].tolist(), predictions[i], y_test[i]))
