@@ -9,6 +9,10 @@ import loading_data as ld
 import frequency as freq
 import os
 
+def get_key(key_array):
+    for i in range(0,len(key_array)):
+        if key_array[i]==1:
+            return i+1
 # load json and create model
 json_file = open('model.json', 'r')
 loaded_model_json = json_file.read()
@@ -22,3 +26,8 @@ print("Loaded model from disk")
 loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 score = loaded_model.evaluate(X, Y, verbose=0)
 print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
+
+predictions = loaded_model.predict(x_train[1])
+for i in range(5):
+    key=get_key(y_train[i])
+	print('%s => %s (expected %d)' % (x_words[i].tolist(), predictions[i], key))

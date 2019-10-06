@@ -9,6 +9,10 @@ import loading_data as ld
 import frequency as freq
 import os
 
+def get_key(key_array):
+    for i in range(0,len(key_array)):
+        if key_array[i]==1:
+            return i+1
 #caricmento dei dati per l'allenaento e per il testing
 #le x sono le frequenze delle lettere di ogni parola cifrata
 #le y sono array di zeri con un uno nella posizione che identifica la chiave corretta
@@ -39,20 +43,20 @@ model.compile(optimizer='adam',
             loss='mean_squared_error',
             metrics=['accuracy'])
 #riempimento del modello keras, cercare le epochs e i batch corretti
-model.fit(x_train[1], y_train[1], epochs=150, batch_size=10)
+model.fit(x_train[1], y_train, epochs=150, batch_size=10)
 
 
 # evaluate the keras model
-_, accuracy = model.evaluate(x_train[1], y_train[1])
+_, accuracy = model.evaluate(x_train[1], y_train)
 print('Accuracy: %.2f \n' % (accuracy*100))
 
 #making prediction for the test set
 x_words=x_train[0]
 
-predictions = model.predict(x_words)
+predictions = model.predict(x_train[1])
 for i in range(5):
     key=get_key(y_train[i])
-	print('%s => %s (expected %s)' % (words[i].tolist(), predictions[i], keys[i]))
+	print('%s => %s (expected %d)' % (x_words[i].tolist(), predictions[i], key))
 
 
 # serialize model to JSON
@@ -62,8 +66,3 @@ with open("model.json", "w") as json_file:
 # serialize weights to HDF5
 model.save_weights("model.h5")
 print("Saved model to disk")
-
-def get_key(key_array):
-    for i in range(0,len(key_array)):
-        if key_array[i]==1:
-            return i+1

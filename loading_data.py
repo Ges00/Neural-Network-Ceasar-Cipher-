@@ -101,7 +101,7 @@ def load_data():
     #373173 chiavi del training
     #y_train=np.asarray(train[1])
     y_train=np.asarray(train[1])
-
+    print(y_train)
     #93294 chiavi del testing
     y_test=np.asarray(test[1])
 
@@ -115,3 +115,5 @@ def get_frequencies(words):
         frequency=freq.percentage_freq(words[i])
         frequencies.append(frequency)
     return frequencies
+
+load_data()
