@@ -39,17 +39,20 @@ model.compile(optimizer='adam',
             loss='mean_squared_error',
             metrics=['accuracy'])
 #riempimento del modello keras, cercare le epochs e i batch corretti
-model.fit(x_train, y_train, epochs=150, batch_size=10)
+model.fit(x_train[1], y_train[1], epochs=150, batch_size=10)
 
 
 # evaluate the keras model
-_, accuracy = model.evaluate(x_train, y_train)
+_, accuracy = model.evaluate(x_train[1], y_train[1])
 print('Accuracy: %.2f \n' % (accuracy*100))
 
 #making prediction for the test set
-predictions = model.predict(x_test)
+x_words=x_train[0]
+
+predictions = model.predict(x_words)
 for i in range(5):
-	print('%s => %s (expected %s)' % (x_test[i].tolist(), predictions[i], y_test[i]))
+    key=get_key(y_train[i])
+	print('%s => %s (expected %s)' % (words[i].tolist(), predictions[i], keys[i]))
 
 
 # serialize model to JSON
@@ -59,3 +62,8 @@ with open("model.json", "w") as json_file:
 # serialize weights to HDF5
 model.save_weights("model.h5")
 print("Saved model to disk")
+
+def get_key(key_array):
+    for i in range(0,len(key_array)):
+        if key_array[i]==1:
+            return i+1

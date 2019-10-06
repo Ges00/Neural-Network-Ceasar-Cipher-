@@ -85,17 +85,21 @@ def load_data():
     #le parole per il test sono l'80% del dataset globale
     train_words_length=int(len(words)*0.8)
 
+    #(parole_cifrate, chiavi)
     train=words_encryption(words[:train_words_length])
-
 
     test=words_encryption(words[train_words_length:len(words)])
 
     #373173 parole cifrate
-    x_train=np.asarray(get_frequencies(train[0]))
+    #x_train=np.asarray(get_frequencies(train[0]))
+    x_train=(train[0], np.asarray(get_frequencies(train[0])))
+
+
     #93294 parole cifrate
     x_test=np.asarray(get_frequencies(test[0]))
 
     #373173 chiavi del training
+    #y_train=np.asarray(train[1])
     y_train=np.asarray(train[1])
 
     #93294 chiavi del testing
@@ -111,5 +115,3 @@ def get_frequencies(words):
         frequency=freq.percentage_freq(words[i])
         frequencies.append(frequency)
     return frequencies
-
-load_data()

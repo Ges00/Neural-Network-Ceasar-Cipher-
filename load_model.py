@@ -1,3 +1,14 @@
+import tensorflow as tf
+from tensorflow import keras
+#hep libraries
+import numpy as np
+import matplotlib.pyplot as plt
+
+#my libraries
+import loading_data as ld
+import frequency as freq
+import os
+
 # load json and create model
 json_file = open('model.json', 'r')
 loaded_model_json = json_file.read()
