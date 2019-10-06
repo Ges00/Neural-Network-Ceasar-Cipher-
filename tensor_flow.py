@@ -56,7 +56,7 @@ x_words=x_train[0]
 predictions = model.predict(x_train[1])
 for i in range(5):
     key=get_key(y_train[i])
-	print('%s => %s (expected %d)' % (x_words[i].tolist(), predictions[i], key))
+    print('%s => %s (expected %d)' % (x_words[i].tolist(), predictions[i], key))
 
 
 # serialize model to JSON
