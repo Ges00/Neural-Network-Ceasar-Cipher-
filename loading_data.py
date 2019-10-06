@@ -24,9 +24,9 @@ alphabet=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 def load_words():
     words = []
     #path windows
-    f = open(r'D:\file_txt\words.txt', 'r')
+    #f = open(r'D:\file_txt\words.txt', 'r')
     #path ubuntu
-    #f = open('/home/diego/Neural-Network-Ceasar-Cipher-/file_txt/words.txt', 'r')
+    f = open('/home/diego/Neural-Network-Ceasar-Cipher-/file_txt/words.txt', 'r')
     for line in f:
         # tolgo il \n per ogni riga
         words.append(line.rstrip() + ' ')
@@ -101,7 +101,7 @@ def load_data():
     #373173 chiavi del training
     #y_train=np.asarray(train[1])
     y_train=np.asarray(train[1])
-    print(y_train)
+
     #93294 chiavi del testing
     y_test=np.asarray(test[1])
 

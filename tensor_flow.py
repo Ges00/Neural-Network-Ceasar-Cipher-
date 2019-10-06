@@ -43,7 +43,7 @@ model.compile(optimizer='adam',
             loss='mean_squared_error',
             metrics=['accuracy'])
 #riempimento del modello keras, cercare le epochs e i batch corretti
-model.fit(x_train[1], y_train, epochs=150, batch_size=10)
+model.fit(x_train[1], y_train, epochs=3, batch_size=10)
 
 
 # evaluate the keras model
@@ -56,7 +56,7 @@ x_words=x_train[0]
 predictions = model.predict(x_train[1])
 for i in range(5):
     key=get_key(y_train[i])
-    print('%s => %s (expected %d)' % (x_words[i].tolist(), predictions[i], key))
+    print('%s => %s (expected %d)' % (x_words[i], predictions[i], key))
 
 
 # serialize model to JSON
