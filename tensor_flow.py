@@ -58,7 +58,6 @@ for i in range(5):
     key=get_key(y_train[i])
     print('%s => %s (expected %d)' % (x_words[i], predictions[i], key))
 
-
 # serialize model to JSON
 model_json = model.to_json()
 with open("model.json", "w") as json_file:

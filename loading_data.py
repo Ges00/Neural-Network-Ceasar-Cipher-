@@ -29,7 +29,7 @@ def load_words():
     f = open('/home/diego/Neural-Network-Ceasar-Cipher-/file_txt/words.txt', 'r')
     for line in f:
         # tolgo il \n per ogni riga
-        words.append(line.rstrip() + ' ')
+        words.append(line.rstrip() + '')
     #cancello i simboli dalle parole
     for word in words:
         for char in word:

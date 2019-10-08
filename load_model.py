@@ -36,3 +36,9 @@ predictions = loaded_model.predict(x_train[1])
 for i in range(5):
     key=get_key(y_train[i])
     print('%s => %s (expected %d)' % (x_words[i], predictions[i], key))
+    expected_key=get_key(y_train[i])
+    m=max(predictions[i])
+    print(m)
+    generated_key=[k for k, j in enumerate(predictions[i]) if j == m]
+    generated_key[0]=generated_key[0]+1
+    print('%s => %s (expected %d)' % (x_words[i],generated_key ,expected_key))
